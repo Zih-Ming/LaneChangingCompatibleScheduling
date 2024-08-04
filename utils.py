@@ -113,23 +113,9 @@ def recordInitial(vehicles, order):
     print()
 
 def recordCurr(vehicles, order):
-    print("Current best order: ")
+    print("Current best order:")
     recordOrder(vehicles, order)
     print("Current best scheduled time:", vehicles.laneA[-1].schedule if order[ALPHA] == 0 else vehicles.laneB[-1].schedule)
-
-# def recordBest(best_order, best_schedule_time):
-#     print("----------------------\n")
-#     print("Earliest arrival time: ")
-#     for i in range(ALPHA+BETA):
-#         print(f'{best_order[i].lane}{best_order[i].id} - {round(best_order[i].earliest, 2)}', end=", ")
-#     print()
-#     print("Best order: ")
-#     for i in range(ALPHA+BETA):
-#         print(f'{best_order[i].lane}{best_order[i].id} - {round(best_order[i].schedule, 2)}', end=", ")
-#     print()
-#     print("Best last scheduled time: ", best_schedule_time) # the last vehicle
-#     print("Best avg scheduled time: ", calculateAvgSchedule(best_order))
-#     print("----------------------\n")
 
 def recordScheduleRecord(schedule_record, algorithm_name):
     print(f"{algorithm_name} last scheduled time: ", schedule_record.last_schedule_time) # the last vehicle
@@ -137,14 +123,14 @@ def recordScheduleRecord(schedule_record, algorithm_name):
 
 def recordSA(vehicles, schedule_record):
     print("----------------------\n")
-    print("SA order: ")
+    print("SA order:")
     recordOrder(vehicles, schedule_record.order)
     print()
     recordScheduleRecord(schedule_record, "SA")
     print("----------------------\n")
 
 def recordExhaustive(vehicles, schedule_record):
-    print("Exhaustive order: ")
+    print("Exhaustive order:")
     recordOrder(vehicles, schedule_record.order)
     print()
     recordScheduleRecord(schedule_record, "Exhaustive")

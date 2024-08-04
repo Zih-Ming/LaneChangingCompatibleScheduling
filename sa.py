@@ -18,6 +18,7 @@ def sampleEarliestArrivalTimeAndModel():
     b_models = [random.randint(1, NMODELS) for _ in range(BETA)]
     return a, b, a_models, b_models
 
+# initialize vehicle info for each round
 def initTestCase():
     # a, b: sorted earliest arrival times
     # a_models, b_models: models
@@ -201,8 +202,6 @@ def scheduleEnteringTime(vehicles, order):
     # add an impossible index into each index list to avoid boundary checking
     for i in range(2):
         indices[i].append(ALPHA+BETA+1)
-    
-    # print(indices)
 
     iA, iB = 0,0
     vehicle, vehicle_prev, lane, idx = None, None, 0, 0
@@ -225,10 +224,8 @@ def scheduleEnteringTime(vehicles, order):
                 vehicle_prev_same_lane = lane[idx-1]
                 vehicle.schedule = max(vehicle_prev_same_lane.schedule + getWaitingTime(vehicle_prev_same_lane, vehicle), vehicle.schedule)
             vehicle_prev = vehicle
-        # print(i, vehicle, vehicle_prev)
 
     result = ScheduleRecord(vehicle.schedule, calculateAvgSchedule(vehicles), calculateAvgDelay(vehicles), copy.deepcopy(order))
-    # print(result)
     return result
 
 # calculate how long veh2 need to wait for veh1
@@ -295,8 +292,9 @@ def oneRun():
 
     return schedule_same
 
+# main function
 def main(num_runs = 1, record = True):
-    # pass True to record if you want to record information about scheduling result
+    # pass True to record if you want to record information about scheduling results
     global recorded
     recorded = record
 
