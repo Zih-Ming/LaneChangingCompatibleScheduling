@@ -27,7 +27,7 @@ There are two arguments, `num_runs` and `record`.
 - `record`: determine whether to record the information about scheduling results.
 
 ## run.sh
-The following command will execute `sa.py` to perform the experiment of 1000 runs.
+The following command will execute `sa.py` to perform 1000 testing runs.
 ```bash
 ./run.sh 1000
 ```
