@@ -22,12 +22,12 @@ To obtain more details, please check this [documentation](https://drive.google.c
 - (simplified) SA: for each round, evaluate the neighbor of the currently best state and store it if it performs better than the original one.
 
 ### main function
-There are two arguments:
-- the former determines the number of testing runs, while
-- the latter determines whether to record the information about scheduling results.
+There are two arguments, `num_runs` and `record`.
+- `num_runs`: determine the number of testing runs.
+- `record`: determine whether to record the information about scheduling results.
 
 ## run.sh
-The following command allows you to execute `sa.py` to perform the experiment of 1000 runs.
+The following command will execute `sa.py` to perform the experiment of 1000 runs.
 ```bash
 ./run.sh 1000
 ```
