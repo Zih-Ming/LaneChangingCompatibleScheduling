@@ -1,6 +1,7 @@
 import random
 import math
 from itertools import chain
+from dataclasses import dataclass, field
 
 # scheduling parameter
 DSAFE = 20 # d_s (m)
@@ -71,19 +72,13 @@ class Vehicles:
     def __iter__(self):
         return iter(self._list_of_vehicles)
 
+@dataclass(order=True)
 class ScheduleRecord:
-    def __init__(self, last_schedule_time = math.inf, avg_schedule_time = math.inf, avg_delay_time = math.inf, order = []):
-        # order: a list that represents a vehicle order with the view of vehicles on lane A (order of version A, for short)
-        self.last_schedule_time = last_schedule_time
-        self.avg_schedule_time = avg_schedule_time
-        self.avg_delay_time = avg_delay_time
-        self.order = order
-    def __str__(self):
-        return f'(schedule time: {self.last_schedule_time}, average schedule time: {self.avg_schedule_time}, average delay time: {self.avg_delay_time}, order of version A: {self.order})'
-    def __repr__(self):
-        return f'(schedule time: {self.last_schedule_time}, average schedule time: {self.avg_schedule_time}, average delay time: {self.avg_delay_time}, order of version A: {self.order})'
-    def __lt__(self, other):
-        return [self.last_schedule_time, self.avg_schedule_time, self.avg_delay_time] < [other.last_schedule_time, other.avg_schedule_time, other.avg_delay_time]
+    # order: a list that represents a vehicle order with the view of vehicles on lane A (order of version A, for short)
+    last_schedule_time: float = math.inf
+    avg_schedule_time: float = math.inf
+    avg_delay_time: float = math.inf
+    order: list = field(default_factory = list) 
 
 def calculateAvgSchedule(vehicles):
     # calculate the avg schedule entering time of all vehicles
